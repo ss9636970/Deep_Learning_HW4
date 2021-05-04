@@ -15,12 +15,13 @@ def savepic(img, p):           #儲存圖片
 #讀取多張照片
 def path2pic_tf(imgList):
     imgs = []
+    size = 256
     for i in range(imgList.shape[0]):
         imgPath = imgList[i]
         img = readpic(imgPath)
-        img = cv2.resize(img, (128, 128), interpolation=cv2.INTER_AREA)
+        img = cv2.resize(img, (size, size), interpolation=cv2.INTER_AREA)
         #img = np.transpose(img, (2, 0, 1))
-        img = img.reshape(1, 128, 128, 3)
+        img = img.reshape(1, size, size, 3)
         imgs.append(img)
     outputs = np.concatenate(imgs, axis=0)
     return outputs
